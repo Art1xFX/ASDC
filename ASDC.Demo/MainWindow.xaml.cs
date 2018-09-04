@@ -81,63 +81,67 @@ namespace ASDC.Demo
 				statusTextBlock.Text = "Отменено";
 		}
 
+		private void closeMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
+
 
 		// Пример преобразования XML в понятные для программы BIN файлы.
+		//private void transformMenuItem_Click(object sender, RoutedEventArgs e)
+		//{
+		//	statusTextBlock.Text = "Преобразование...";
+		//	List<Citizen> result = new List<Citizen>();
+		//	OpenFileDialog openFileDialog = new OpenFileDialog()
+		//	{
+		//		Title = "Преобразовать",
+		//		Filter = "XML файлы (*.xml)|*.xml"
+		//	};
+		//	if (openFileDialog.ShowDialog() == true)
+		//	{
+		//		try
+		//		{
 
-		private void transformMenuItem_Click(object sender, RoutedEventArgs e)
-		{
-			statusTextBlock.Text = "Преобразование...";
-			List<Citizen> result = new List<Citizen>();
-			OpenFileDialog openFileDialog = new OpenFileDialog()
-			{
-				Title = "Преобразовать",
-				Filter = "XML файлы (*.xml)|*.xml"
-			};
-			if (openFileDialog.ShowDialog() == true)
-			{
-				try
-				{
+		//			XDocument doc = XDocument.Load(openFileDialog.FileName);
+		//			foreach (var record in doc.Element("dataset").Elements("record"))
+		//			{
+		//				result.Add(new Citizen()
+		//				{
+		//					PIN = long.Parse(record.Element("PIN").Value),
+		//					FirstName = record.Element("FirstName").Value,
+		//					LastName = record.Element("LastName").Value,
+		//					Gender = (Gender)int.Parse(record.Element("Gender").Value),
+		//					Birth = DateTime.Parse(record.Element("Birth").Value),
+		//				});
+		//			}
 
-					XDocument doc = XDocument.Load(openFileDialog.FileName);
-					foreach (var record in doc.Element("dataset").Elements("record"))
-					{
-						result.Add(new Citizen()
-						{
-							PIN = long.Parse(record.Element("PIN").Value),
-							FirstName = record.Element("FirstName").Value,
-							LastName = record.Element("LastName").Value,
-							Gender = (Gender)int.Parse(record.Element("Gender").Value),
-							Birth = DateTime.Parse(record.Element("Birth").Value),
-						});
-					}
+		//			using (var writer = new BinaryWriter(new FileStream("citizens.bin", FileMode.OpenOrCreate)))
+		//			{
+		//				writer.Write(result.Count);
+		//				foreach (var item in result)
+		//				{
+		//					writer.Write(item.PIN);
+		//					writer.Write(item.FirstName.Length);
+		//					foreach (var c in item.FirstName)
+		//						writer.Write(c);
 
-					using (var writer = new BinaryWriter(new FileStream("citizens.bin", FileMode.OpenOrCreate)))
-					{
-						writer.Write(result.Count);
-						foreach (var item in result)
-						{
-							writer.Write(item.PIN);
-							writer.Write(item.FirstName.Length);
-							foreach (var c in item.FirstName)
-								writer.Write(c);
-
-							writer.Write(item.LastName.Length);
-							foreach (var c in item.LastName)
-								writer.Write(c);
-							writer.Write(item.Birth.Day);
-							writer.Write(item.Birth.Month);
-							writer.Write(item.Birth.Year);
-							writer.Write((int)item.Gender);
-						}
-					}
-					statusTextBlock.Text = "Готово";
-				}
-				catch (Exception)
-				{
-					MessageBox.Show("Не удалось преобразовать указанный файл!", "ASDC", MessageBoxButton.OK, MessageBoxImage.Error);
-				}
-			}
-		}
+		//					writer.Write(item.LastName.Length);
+		//					foreach (var c in item.LastName)
+		//						writer.Write(c);
+		//					writer.Write(item.Birth.Day);
+		//					writer.Write(item.Birth.Month);
+		//					writer.Write(item.Birth.Year);
+		//					writer.Write((int)item.Gender);
+		//				}
+		//			}
+		//			statusTextBlock.Text = "Готово";
+		//		}
+		//		catch (Exception)
+		//		{
+		//			MessageBox.Show("Не удалось преобразовать указанный файл!", "ASDC", MessageBoxButton.OK, MessageBoxImage.Error);
+		//		}
+		//	}
+		//}
 
 
 		private async void searchMenuItem_Click(object sender, RoutedEventArgs e)

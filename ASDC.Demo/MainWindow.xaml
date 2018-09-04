@@ -16,7 +16,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Выход" Template="{DynamicResource MenuItemControlTemplate2}" Click="transformMenuItem_Click">
+                    <MenuItem Header="Выход" Template="{DynamicResource MenuItemControlTemplate2}" Click="closeMenuItem_Click">
                         <MenuItem.Icon>
                             <Image Source="Resources/Exit.png"/>
                         </MenuItem.Icon>
@@ -80,11 +80,11 @@
                             <Image Source="Resources/Open.png"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Template="{DynamicResource MenuItemControlTemplate1}" Click="transformMenuItem_Click" ToolTip="Преобразовать" Visibility="Collapsed">
+                    <!--<MenuItem Template="{DynamicResource MenuItemControlTemplate1}" Click="transformMenuItem_Click" ToolTip="Преобразовать">
                         <MenuItem.Icon>
                             <Image Source="Resources/Open.png"/>
                         </MenuItem.Icon>
-                    </MenuItem>
+                    </MenuItem>-->
                     <Separator/>
                     <ComboBox x:Name="searchAlgorithmComboBox" Width="86" Style="{DynamicResource ComboBoxStyle1}" IsEnabled="False" ToolTip="Алгоритм поиска" SelectionChanged="searchAlgorithmComboBox_SelectionChanged">
                         <ComboBoxItem Content="Linear"/>
