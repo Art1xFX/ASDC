@@ -1,0 +1,16 @@
+﻿<Window x:Class="ASDC.Demo.SearchTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASDC.Demo"
+        mc:Ignorable="d"
+        Title="Анализ сложности поиска" Height="133.029" Width="376" Style="{DynamicResource VisualWindowStyle}" Icon="Resources/Sort.png" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanMinimize">
+    <DataGrid x:Name="dataGrid" CanUserSortColumns="True">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Path=Algorithm}" ClipboardContentBinding="{x:Null}" Header="Алгоритм"/>
+            <DataGridTextColumn Binding="{Binding Path=Complexity}" ClipboardContentBinding="{x:Null}" Header="Практическая сложность"/>
+            <DataGridTextColumn Binding="{Binding Path=TheoreticalComplexity}" ClipboardContentBinding="{x:Null}" Header="Теоретическая сложность"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</Window>

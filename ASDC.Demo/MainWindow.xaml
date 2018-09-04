@@ -1,0 +1,134 @@
+﻿<Window x:Class="ASDC.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASDC.Demo"
+        mc:Ignorable="d"
+        Title="ASDC" Height="600" Width="800" Style="{DynamicResource VisualWindowStyle}" Icon="Resources/Icon.ico">
+    <Grid Background="#FF2C3C59">
+        <ToolBarPanel Height="51" VerticalAlignment="Top" >
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="Файл" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem x:Name="openMenuItem" Header="Открыть" Template="{DynamicResource MenuItemControlTemplate2}" Click="openMenuItem_Click">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Open.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Выход" Template="{DynamicResource MenuItemControlTemplate2}" Click="transformMenuItem_Click">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Exit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                
+
+                <MenuItem Header="Представление" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem x:Name="stackMenuItem" Header="Стек" Template="{DynamicResource MenuItemControlTemplate2}" Click="stackMenuItem_Click" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Stack.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="queueMenuItem" Header="Очередь" Template="{DynamicResource MenuItemControlTemplate2}" Click="queueMenuItem_Click" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Queue.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="dequeMenuItem" Header="Двухсторонняя очередь" Template="{DynamicResource MenuItemControlTemplate2}" Click="dequeMenuItem_Click" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Deque.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="preorderMenuItem" Header="Прямой обход" Template="{DynamicResource MenuItemControlTemplate2}" Click="preorderMenuItem_Click" ToolTip="Обход дерева в прямом порядке" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Preorder.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="inorderMenuItem" Header="Симметричный обход" Template="{DynamicResource MenuItemControlTemplate2}" Click="inorderMenuItem_Click" ToolTip="Симметричный обход дерева" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Inorder.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="postorderMenuItem" Header="Обратный обход" Template="{DynamicResource MenuItemControlTemplate2}" Click="postorderMenuItem_Click" ToolTip="Обход дерева в обратном порядке" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Postorder.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Анализ" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem x:Name="searchTestMenuItem" Header="Сложность поиска" Template="{DynamicResource MenuItemControlTemplate2}" IsEnabled="False" Click="searchTestMenuItem_Click">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Search.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="sortTestMenuItem" Header="Сложность сортировки" Template="{DynamicResource MenuItemControlTemplate2}" Click="sortTestMenuItem_Click" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Sort.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                </MenuItem>
+            </Menu>
+            <ToolBarTray IsLocked="True">
+                <ToolBar HorizontalAlignment="Left" IsOverflowOpen="True">
+                    <MenuItem x:Name="openMenu2" Template="{DynamicResource MenuItemControlTemplate3}" Click="openMenuItem_Click" ToolTip="Открыть">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Open.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Template="{DynamicResource MenuItemControlTemplate1}" Click="transformMenuItem_Click" ToolTip="Преобразовать" Visibility="Collapsed">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Open.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <ComboBox x:Name="searchAlgorithmComboBox" Width="86" Style="{DynamicResource ComboBoxStyle1}" IsEnabled="False" ToolTip="Алгоритм поиска" SelectionChanged="searchAlgorithmComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Linear"/>
+                        <ComboBoxItem Content="Binary"/>
+                        <ComboBoxItem Content="Binary tree"/>
+                        <ComboBoxItem Content="Hash table"/>
+                    </ComboBox>
+                    <TextBox x:Name="searchKeyTextBox" Width="100" Style="{DynamicResource TextBoxStyle1}" IsEnabled="False" ToolTip="Значение ключевого поля" TextChanged="searchKeyTextBox_TextChanged"/>
+                    <MenuItem x:Name="searchMenuItem" Template="{DynamicResource MenuItemControlTemplate3}" Click="searchMenuItem_Click" IsEnabled="False" ToolTip="Поиск">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Search.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <ComboBox x:Name="sortAlgorithmComboBox" Width="80" Style="{DynamicResource ComboBoxStyle1}" IsEnabled="False" ToolTip="Алгоритм сортировки" SelectionChanged="sortKeyComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Bubble"/>
+                        <ComboBoxItem Content="Quick"/>
+                        <ComboBoxItem Content="Selection"/>
+                        <ComboBoxItem Content="Heap"/>
+                        <ComboBoxItem Content="Insert"/>
+                        <ComboBoxItem Content="Shell"/>
+                    </ComboBox>
+                    <ComboBox x:Name="sortKeyComboBox" Width="100" Style="{DynamicResource ComboBoxStyle1}" IsEnabled="False" ToolTip="Ключевое поле" SelectionChanged="sortKeyComboBox_SelectionChanged"/>
+                    <MenuItem x:Name="sortMenuItem" Template="{DynamicResource MenuItemControlTemplate3}" IsEnabled="False" ToolTip="Сортировка" Click="sortMenuItem_Click">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Sort.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ToolBar>
+            </ToolBarTray>
+        </ToolBarPanel>
+        <StatusBar x:Name="statusBar" VerticalAlignment="Bottom" Background="{DynamicResource TabItem.MouseOver.Background}" Foreground="White">
+            <Grid Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="statusTextBlock" Text="Готово" ToolTip="Статус" HorizontalAlignment="Left" Width="80"/>
+                <TextBlock x:Name="comparisionsCountTextBlock" Text="Сравнений 100000" ToolTip="Общее число сравнений" Grid.Column="1" Visibility="Hidden"/>
+                <TextBlock x:Name="timeTextBlock" Text="Перестановок 14142" ToolTip="Общее число перестановок" Grid.Column="2" Visibility="Hidden"/>
+            </Grid>
+        </StatusBar>
+        <TabControl x:Name="tabControl" Margin="4,53,4,27" SelectionChanged="tabControl_SelectionChanged"/>
+
+    </Grid>
+</Window>

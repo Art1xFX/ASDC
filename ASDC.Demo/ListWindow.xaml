@@ -1,0 +1,98 @@
+﻿<Window x:Class="ASDC.ListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASDC"
+        mc:Ignorable="d"
+        Title="Стек" Height="416.339" Width="479" Style="{DynamicResource VisualWindowStyle}" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="CanMinimize">
+    <Grid>
+        <ToolBarPanel Height="51" VerticalAlignment="Top" >
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="Файл" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem Header="Закрыть" Template="{DynamicResource MenuItemControlTemplate2}" Click="closeMenuItem_Click">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Exit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Правка" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem x:Name="addMenuItem" Header="Добавить элемент" Template="{DynamicResource MenuItemControlTemplate2}" IsEnabled="True" Click="addMenuItem_Click" ToolTip="Добавить элемент (Push)">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/AddFront.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="addBackMenuItem" Header="Добавить элемент в конец" Template="{DynamicResource MenuItemControlTemplate2}" IsEnabled="True" Click="addBackMenuItem_Click" ToolTip="Добавить элемент в конец (PushBack)" Visibility="Collapsed">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/AddFront.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator x:Name="separator" Visibility="Collapsed"/>
+                    <MenuItem x:Name="removeMenuItem" Header="Удалить элемент" Template="{DynamicResource MenuItemControlTemplate2}" IsEnabled="False" Click="removeMenuItem_Click" ToolTip="Удалить элемент (Pop)">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/RemoveFront.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="removeBackMenuItem" Header="Удалить элемент с конца" Template="{DynamicResource MenuItemControlTemplate2}" IsEnabled="False" ToolTip="Удалить элемент с конца (PopBack)" Click="removeBackMenuItem_Click" Visibility="Collapsed">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/RemoveFront.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="clearMenuItem" Header="Очистить" Template="{DynamicResource MenuItemControlTemplate2}" IsEnabled="False" Click="clearMenuItem_Click" ToolTip="Очистить ">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Clear.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+            <ToolBarTray IsLocked="True">
+                <ToolBar HorizontalAlignment="Left" IsOverflowOpen="True">
+
+                    <MenuItem x:Name="addMenuItem2" Template="{DynamicResource MenuItemControlTemplate3}" Click="addMenuItem_Click" ToolTip="Добавить элемент (Push)">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/AddFront.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="addBackMenuItem2" Template="{DynamicResource MenuItemControlTemplate3}" Click="addBackMenuItem_Click" ToolTip="Добавить элемент в конец (PushBack)" Visibility="Collapsed">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/AddBack.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator x:Name="separator2" Visibility="Collapsed"/>
+                    <MenuItem x:Name="removeMenuItem2" Template="{DynamicResource MenuItemControlTemplate3}" Click="removeMenuItem_Click" ToolTip="Удалить элемент (Pop)" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/RemoveFront.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="removeBackMenuItem2" Template="{DynamicResource MenuItemControlTemplate3}" Click="removeBackMenuItem_Click" ToolTip="Удалить элемент c конца (PopBack)" IsEnabled="False" Visibility="Collapsed">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/RemoveBack.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="clearMenuItem2" Template="{DynamicResource MenuItemControlTemplate3}" Click="clearMenuItem_Click" ToolTip="Очистить" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/Clear.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                </ToolBar>
+            </ToolBarTray>
+        </ToolBarPanel>
+
+        <Border Margin="0,51,0,22" Background="{StaticResource TabControl.Empty.Background}">
+            <DataGrid x:Name="dataGrid"/>
+        </Border>
+
+        <StatusBar x:Name="statusBar" VerticalAlignment="Bottom" Background="{DynamicResource TabItem.MouseOver.Background}" Foreground="White">
+            <Grid Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="countTextBlock" Text="Количество 0" ToolTip="Количество элементов в стеке" Grid.Column="2"/>
+            </Grid>
+        </StatusBar>
+    </Grid>
+</Window>

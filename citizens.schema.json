@@ -1,0 +1,43 @@
+{
+  "id": 113232,
+  "num_rows": 1000,
+  "file_format": "xml",
+  "name": "citizens",
+  "xml_root_element": "dataset",
+  "xml_record_element": "record",
+  "columns": [
+    {
+      "name": "PIN",
+      "null_percentage": 0,
+      "type": "EIN",
+      "formula": "random(1000000000000,9999999999999)"
+    },
+    {
+      "name": "FirstName",
+      "null_percentage": 0,
+      "type": "First Name",
+      "formula": ""
+    },
+    {
+      "name": "LastName",
+      "null_percentage": 0,
+      "type": "Last Name",
+      "formula": ""
+    },
+    {
+      "name": "Birth",
+      "null_percentage": 0,
+      "type": "Date",
+      "min": "1/2/1980",
+      "max": "5/2/2018",
+      "format": "%d.%m.%Y",
+      "formula": ""
+    },
+    {
+      "name": "Gender",
+      "null_percentage": 0,
+      "type": "Gender",
+      "formula": "random(0, 1)"
+    }
+  ]
+}
